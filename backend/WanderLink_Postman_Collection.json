@@ -1,0 +1,384 @@
+{
+  "info": {
+    "name": "WanderLink Backend REST API Collection",
+    "_postman_id": "a5e8c1b9-3b6b-4e12-b28e-9d2146e9dfb1",
+    "description": "Complete REST API collection for WanderLink hackathon platform powering React frontend integrations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. User Module",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Karan Mehra\",\n  \"email\": \"karan.mehra@example.com\",\n  \"password\": \"password123\",\n  \"age\": 25,\n  \"location\": \"Chandigarh\",\n  \"bio\": \"Backpacker & landscape photographer.\",\n  \"interests\": \"Beach, Photography, Food\",\n  \"travelStyle\": \"Budget\",\n  \"role\": \"USER\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "register"]
+            }
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users"]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Aarav Sharma Updated\",\n  \"age\": 27,\n  \"location\": \"Mumbai / Goa\",\n  \"bio\": \"Experienced solo traveler and coastal photographer.\",\n  \"interests\": \"Beach, Adventure, Photography, Scuba\",\n  \"travelStyle\": \"Budget\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Trip Module",
+      "item": [
+        {
+          "name": "Create Trip",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"destination\": \"Goa\",\n  \"startDate\": \"2026-12-20\",\n  \"endDate\": \"2026-12-25\",\n  \"budget\": 10000.0,\n  \"interests\": \"Beach, Adventure, Photography\",\n  \"travelStyle\": \"Budget\",\n  \"description\": \"Solo trip to explore Goa coast and heritage.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/trips",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "trips"]
+            }
+          }
+        },
+        {
+          "name": "Get All Trips",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/trips",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "trips"]
+            }
+          }
+        },
+        {
+          "name": "Get Trip by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/trips/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "trips", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get User's Trips",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/trips/user/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "trips", "user", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Matching Algorithm (Core Differentiator)",
+      "item": [
+        {
+          "name": "Find Compatible Travel Buddies (tripId=1)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/matches?tripId=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "matches"],
+              "query": [
+                {
+                  "key": "tripId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Connection Module",
+      "item": [
+        {
+          "name": "Send Connection Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"senderId\": 1,\n  \"receiverId\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/connections",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "connections"]
+            }
+          }
+        },
+        {
+          "name": "Get Connections for User",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/connections/user/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "connections", "user", "1"]
+            }
+          }
+        },
+        {
+          "name": "Accept Connection Request",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/connections/1/accept",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "connections", "1", "accept"]
+            }
+          }
+        },
+        {
+          "name": "Reject Connection Request",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/api/connections/1/reject",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "connections", "1", "reject"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Accommodation Module",
+      "item": [
+        {
+          "name": "Get All Accommodations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/accommodations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "accommodations"]
+            }
+          }
+        },
+        {
+          "name": "Add Accommodation Listing",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hostId\": 4,\n  \"title\": \"Heritage Villa by Mandovi River\",\n  \"location\": \"Panaji, Goa\",\n  \"description\": \"Peaceful riverfront room with breakfast and bicycle rental.\",\n  \"pricePerNight\": 1600.0,\n  \"imageUrl\": \"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/accommodations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "accommodations"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Food Experience Module",
+      "item": [
+        {
+          "name": "Get All Food Listings",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/food",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "food"]
+            }
+          }
+        },
+        {
+          "name": "Add Food Experience",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"providerId\": 5,\n  \"title\": \"Goan Prawn Curry & Poee Workshop\",\n  \"cuisine\": \"Goan Coastal\",\n  \"location\": \"Mapusa, Goa\",\n  \"price\": 450.0,\n  \"description\": \"Interactive cooking demo followed by a family lunch on a garden veranda.\",\n  \"imageUrl\": \"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/food",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "food"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Travel Groups Module",
+      "item": [
+        {
+          "name": "Get All Travel Groups",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/groups",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "groups"]
+            }
+          }
+        },
+        {
+          "name": "Create Travel Group",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Goa South Beaches & Scuba Squad\",\n  \"destination\": \"Goa\",\n  \"description\": \"Group for water sports and scuba diving at Grande Island.\",\n  \"createdBy\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/groups",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "groups"]
+            }
+          }
+        },
+        {
+          "name": "Join Travel Group",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/groups/1/join",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "groups", "1", "join"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. AI Assistant Module (Person 4 Contract)",
+      "item": [
+        {
+          "name": "AI Assistant Travel Suggestion",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Plan a 3-day Goa trip\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ai/assistant",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai", "assistant"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
